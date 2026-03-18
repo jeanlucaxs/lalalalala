@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JeaxLabs | Soluções em Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-escuro: #0a192f;
+            --azul-claro: #007bff;
+            --azul-hover: #0056b3;
+            --texto-claro: #e6f1ff;
+            --texto-cinza: #8892b0;
+            --bg-card: rgba(17, 34, 64, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--azul-escuro);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar estilizada para PC */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--azul-escuro); }
+        ::-webkit-scrollbar-thumb { background: var(--azul-claro); border-radius: 5px; }
+
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 10%;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--azul-claro);
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: var(--texto-claro);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--azul-claro); }
+
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Home / Hero */
+        #inicio {
+            text-align: center;
+            background: radial-gradient(circle at top right, #112240, #0a192f);
+        }
+
+        #inicio h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        #inicio p {
+            font-size: 1.2rem;
+            color: var(--texto-cinza);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-cta {
+            padding: 15px 40px;
+            background: var(--azul-claro);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background: var(--azul-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Sobre */
+        .sobre-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .highlight { color: var(--azul-claro); font-weight: bold; }
+
+        /* Apps Prontos */
+        .grid-apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--azul-claro);
+            transform: translateY(-5px);
+        }
+
+        .card i { font-size: 2.5rem; color: var(--azul-claro); margin-bottom: 20px; }
+
+        /* Contato */
+        .contato-box {
+            background: var(--bg-card);
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Botão WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: var(--texto-cinza);
+            border-top: 1px solid rgba(0, 123, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">JEAX<span style="color:white">LABS</span></div>
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#apps">Apps Prontos</a>
+            <a href="#personalizado">Personalizado</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <h1>Sistemas que Impulsionam Negócios</h1>
+        <p>Desenvolvemos softwares robustos para PC com foco em gerenciamento empresarial, escolar e comercial. Simplicidade no uso, poder na execução.</p>
+        <div>
+            <a href="#personalizado" class="btn-cta">Solicitar Projeto Personalizado</a>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <div class="sobre-container">
+            <div>
+                <h2 class="highlight" style="font-size: 2.5rem; margin-bottom: 20px;">Inovação com Confiança</h2>
+                <p>A <span class="highlight">JeaxLabs</span> nasceu para simplificar a tecnologia. Especializada em sistemas de gerenciamento para pequenas empresas, escolas e comércios, nossa missão é entregar ferramentas que qualquer colaborador consiga operar com facilidade, sem abrir mão da segurança de dados.</p>
+                <br>
+                <p>Acreditamos que o software deve se adaptar ao seu negócio, e não o contrário. Por isso, oferecemos uma base sólida que pode ser moldada exatamente conforme a sua necessidade.</p>
+            </div>
+            <div style="text-align: center;">
+                <i class="fas fa-microchip" style="font-size: 15rem; color: rgba(0,123,255,0.1);"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="apps">
+        <h2 style="font-size: 2.5rem; margin-bottom: 40px; text-align: center;">Apps a Pronta Entrega</h2>
+        <div class="grid-apps">
+            <div class="card">
+                <i class="fas fa-school"></i>
+                <h3>Gestão Escolar</h3>
+                <p>Controle de alunos, frequências e administrativo. Interface limpa e rápida.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-cash-register"></i>
+                <h3>PDV Comercial</h3>
+                <p>Sistema de frente de caixa otimizado para produtividade no PC.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-boxes-stacked"></i>
+                <h3>Controle de Estoque</h3>
+                <p>Gerenciamento inteligente de inventário para pequenas empresas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="personalizado">
+        <div class="contato-box" style="border: 2px dashed var(--azul-claro);">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Seu App, Suas Regras!</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Tem uma ideia única ou precisa de uma função específica que não encontra em lugar nenhum? Nós adoramos desafios! Vamos transformar sua necessidade em um software exclusivo.</p>
+            <p><small>*Consulte nossas condições para módulos de personalização adicional.</small></p>
+            <br>
+            <a href="https://wa.me/5542999587464" class="btn-cta" style="background: transparent; border: 2px solid var(--azul-claro);">Conversar sobre Projeto</a>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="contato-box">
+            <h2>Contato Direto</h2>
+            <p>Pronto para levar sua empresa ao próximo nível?</p>
+            <br>
+            <p><i class="fas fa-phone"></i> +55 42 99958-7464</p>
+            <p><i class="fas fa-envelope"></i> contato@jeaxlabs.com.br</p>
+            <br>
+            <p>Atendimento focado em Prudentópolis e Região.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 JeaxLabs - Todos os direitos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/5542999587464" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
