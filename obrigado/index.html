@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="tituloPagina"></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "JeaxLabs",
+      "url": "https://jeaxlabs.com.br",
+      "logo": "https://jeaxlabs.com.br/midias/logojeaxlabs.png",
+      "sameAs": [
+        "https://wa.me/5542999587464",
+        "https://www.instagram.com/jeaxlabs"
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --azul-escuro: #0a192f;
+            --azul-claro: #007bff;
+            --azul-hover: #0056b3;
+            --texto-claro: #e6f1ff;
+            --texto-cinza: #8892b0;
+            --bg-card: rgba(17, 34, 64, 0.7);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--azul-escuro); color: var(--texto-claro); line-height: 1.6; overflow-x: hidden; }
+        header {
+            position: fixed; width: 100%; padding: 15px 10%;
+            background: rgba(10, 25, 47, 0.9); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+        }
+        
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 35px; width: auto; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--azul-claro); letter-spacing: 2px; }
+        nav { display: flex; gap: 20px; }
+        nav a { color: var(--texto-claro); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--azul-claro); }
+        
+        /* ESTILO DA SEÇÃO DE OBRIGADO */
+        section { padding: 140px 10% 100px; min-height: calc(100vh - 100px); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .obrigado-box {
+            background: var(--bg-card);
+            padding: 50px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .obrigado-box i.sucesso-icon { font-size: 4.5rem; color: #25d366; margin-bottom: 20px; }
+        .obrigado-box h1 { font-size: 2.5rem; margin-bottom: 15px; color: var(--texto-claro); }
+        .obrigado-box p { color: var(--texto-cinza); font-size: 1.1rem; margin-bottom: 25px; }
+        
+        /* Box do Código do Pedido */
+        .codigo-container {
+            background: rgba(10, 25, 47, 0.6);
+            border: 1px dashed var(--azul-claro);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .codigo-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--texto-cinza); }
+        .codigo-valor { font-size: 1.8rem; font-weight: bold; color: var(--azul-claro); margin-top: 5px; }
+        
+        .btn-cta {
+            padding: 15px 35px; background: var(--azul-claro); color: white;
+            text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; display: inline-block;
+        }
+        .btn-cta:hover { background: var(--azul-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        
+        footer { text-align: center; padding: 40px; color: var(--texto-cinza); border-top: 1px solid rgba(0, 123, 255, 0.1); }
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px; }
+            nav { margin-top: 15px; gap: 15px; }
+            .obrigado-box { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="midias/logoj.png" alt="J" class="logo-img">
+            <div class="logo" id="headerLogo"></div>
+        </div>
+        <nav id="navLinks"></nav>
+    </header>
+
+    <section>
+        <div class="obrigado-box">
+            <i class="fas fa-check-circle sucesso-icon"></i>
+            <h1>Muito Obrigado!</h1>
+            <p>Seu pedido foi processado com sucesso. Esta é a sua licença para acessar seu produto:</p>
+            
+            <div class="codigo-container">
+                <div class="codigo-label">Código do Pedido</div>
+                <div class="codigo-valor" id="codigoPedido">------</div> 
+            </div>
+
+            <a href="/" class="btn-cta">Voltar para o Início</a>
+        </div>
+    </section>
+
+    <footer id="footerSec">
+        <p id="footerTexto"></p>
+    </footer>
+
+    <script>
+        /* ========= CONTROLE DE DADOS ========= */
+        const info = {
+            config: {
+                nomeEmpresa: "JeaxLabs",
+                tituloSite: "Obrigado por sua compra! | JeaxLabs",
+            },
+            menu: { "Início": "/#inicio", "Sobre": "/#sobre", "Apps Prontos": "/#apps", "Apps Personalizados": "/#personalizado",  "Contato": "/#contato" }
+        };
+
+        /* ========= LÓGICA DA PÁGINA ========= */
+        document.title = info.config.tituloSite;
+        document.getElementById('headerLogo').innerHTML = `${info.config.nomeEmpresa.slice(0,4)}<span style="color:white">${info.config.nomeEmpresa.slice(4)}</span>`;
+        document.getElementById('footerTexto').innerHTML = `&copy; 2026 ${info.config.nomeEmpresa} - Todos os direitos reservados.`;
+        
+        const nav = document.getElementById('navLinks');
+        Object.entries(info.menu).forEach(([label, link]) => { nav.innerHTML += `<a href="${link}">${label}</a>`; });
+
+        /* ========= CAPTURAR PARÂMETRO DA URL (?cod=67) ========= */
+        function obterCodigoUrl() {
+            const parametros = new URLSearchParams(window.location.search);
+            const codigo = parametros.get('cod'); // Busca o valor de 'cod'
+            
+            if (codigo) {
+                // Se o código existir na URL, exibe ele na tela
+                document.getElementById('codigoPedido').innerText = `#${codigo}`;
+            } else {
+                // Caso acessem a página direto sem código
+                document.getElementById('codigoPedido').innerText = "Confirmado";
+            }
+        }
+
+        // Executa a função ao carregar a página
+        window.onload = obterCodigoUrl;
+    </script>
+</body>
+</html>
